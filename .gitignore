@@ -20,3 +20,4 @@ docker/data/
 /src/test/resources/data/db/
 /out/
 /src/test/resources/elasticsearch-data/
+/src/test/resources/data/

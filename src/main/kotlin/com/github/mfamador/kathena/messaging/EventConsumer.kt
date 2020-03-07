@@ -10,6 +10,6 @@ class EventConsumer {
 
     @KafkaListener(topics = ["kathena-events"], groupId = "kathena-consumer")
     fun processMessage(message: String) {
-        log.info("got message: {}", message)
+        log.debug("got message: {}", message)
     }
 }

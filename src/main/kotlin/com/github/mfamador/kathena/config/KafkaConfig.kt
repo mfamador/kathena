@@ -13,10 +13,9 @@ import org.springframework.kafka.config.KafkaListenerContainerFactory
 import org.springframework.kafka.core.*
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer
 
-
 @Configuration
 @EnableKafka
-class KafkaProducerConfig(@Value("\${kafka.bootstrap-servers}") private val bootstrapServers: String) {
+class KafkaConfig(@Value("\${kafka.bootstrap-servers}") private val bootstrapServers: String) {
 
     @Bean
     fun producerConfigs(): Map<String, Any> {
@@ -33,6 +32,7 @@ class KafkaProducerConfig(@Value("\${kafka.bootstrap-servers}") private val boot
         props[ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG] = bootstrapServers
         props[ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG] = StringDeserializer::class.java
         props[ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG] = StringDeserializer::class.java
+        props[ConsumerConfig.AUTO_OFFSET_RESET_CONFIG] = "earliest"
         return props
     }
 
