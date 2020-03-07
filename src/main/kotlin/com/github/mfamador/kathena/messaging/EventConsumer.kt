@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component
 
 @Component
 class EventConsumer {
-
     private val log = LoggerFactory.getLogger(javaClass)
+
     @KafkaListener(topics = ["kathena-events"], groupId = "kathena-consumer")
     fun processMessage(message: String) {
         log.info("got message: {}", message)
