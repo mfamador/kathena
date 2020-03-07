@@ -19,3 +19,4 @@ docker/data/
 /src/test/resources/zk-single-kafka-single/
 /src/test/resources/data/db/
 /out/
+/src/test/resources/elasticsearch-data/

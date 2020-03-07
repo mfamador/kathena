@@ -30,14 +30,11 @@ apply(plugin = "org.jetbrains.kotlin.plugin.allopen")
 apply(plugin = "io.spring.dependency-management")
 
 val springVersion = "5.2.3.RELEASE"
-val springBootVersion = "2.2.5.RELEASE"
 val junitVersion = "5.6.0"
 val assertJVersion = "3.15.0"
 val kotlinVersion = "1.3.61"
 val kotlinXVersion = "1.3.3"
 val jacksonVersion = "2.10.2"
-
-project.extra.set("springBootVersion", springBootVersion)
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
