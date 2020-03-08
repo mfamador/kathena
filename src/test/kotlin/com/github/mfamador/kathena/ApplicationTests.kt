@@ -2,7 +2,6 @@ package com.github.mfamador.kathena
 
 import com.palantir.docker.compose.DockerComposeExtension
 import com.palantir.docker.compose.configuration.ShutdownStrategy.GRACEFUL
-import com.palantir.docker.compose.configuration.ShutdownStrategy.SKIP
 import com.palantir.docker.compose.connection.DockerPort
 import com.palantir.docker.compose.connection.waiting.HealthChecks
 import org.junit.jupiter.api.AfterEach
@@ -13,7 +12,6 @@ import org.junit.jupiter.api.extension.RegisterExtension
 import org.slf4j.LoggerFactory
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.junit.jupiter.SpringExtension
-
 
 @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)

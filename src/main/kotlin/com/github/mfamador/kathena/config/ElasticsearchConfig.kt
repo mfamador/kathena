@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.data.elasticsearch.client.ClientConfiguration
 import org.springframework.data.elasticsearch.client.RestClients
 
-
 @Configuration
 class ElasticsearchConfig(@Value("\${elasticsearch.host}") private val host: String) {
     val log = LoggerFactory.getLogger(javaClass)
@@ -22,5 +21,4 @@ class ElasticsearchConfig(@Value("\${elasticsearch.host}") private val host: Str
 
         return RestClients.create(clientConfiguration).rest()
     }
-
 }
