@@ -30,7 +30,6 @@ class ApplicationTests {
     }
 
     companion object {
-
         @JvmField
         @RegisterExtension
         val dockerRule = DockerComposeExtension.builder()
