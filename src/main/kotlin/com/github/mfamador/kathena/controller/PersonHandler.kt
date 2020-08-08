@@ -58,5 +58,4 @@ class PersonHandler(private val personService: PersonService) {
         ServerResponse.noContent().build(personService.deleteAll())
 
     private fun getId(request: ServerRequest) = request.pathVariable("id")
-
 }
