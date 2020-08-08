@@ -34,3 +34,30 @@ Content-Type: text/plain
 "test message"
 
 ###
+
+GET http://localhost:9200/_cat/indices/
+
+###
+
+GET http://localhost:9200/_cat/indices/blog
+
+###
+
+POST localhost:9200/blog/article/1
+Content-Type: application/json
+
+{
+    "name" : "John",
+    "lastname" : "Doe",
+    "job_description" : "Systems administrator and Linux specialit"
+}
+
+###
+
+GET http://localhost:9200/blog/_doc/1
+
+###
+
+GET http://localhost:9200/blog/_search
+
+###
