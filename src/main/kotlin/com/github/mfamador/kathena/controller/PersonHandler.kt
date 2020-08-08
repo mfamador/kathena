@@ -23,7 +23,7 @@ class PersonHandler(private val personService: PersonService) {
 
     fun get(request: ServerRequest): Mono<ServerResponse> =
         personService.get(getId(request))
-            .flatMap { ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).syncBody(it) }
+            .flatMap { ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).bodyValue(it) }
             .switchIfEmpty(ServerResponse.notFound().build())
 
     fun add(request: ServerRequest): Mono<ServerResponse> =
