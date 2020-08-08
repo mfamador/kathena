@@ -49,7 +49,7 @@ Content-Type: application/json
 {
     "name" : "John",
     "lastname" : "Doe",
-    "job_description" : "Systems administrator and Linux specialit"
+    "job_description" : "Systems administrator and Linux specialist"
 }
 
 ###
