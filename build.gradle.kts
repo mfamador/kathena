@@ -14,7 +14,6 @@ plugins {
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.spring") version kotlinVersion
 }
-
 group = "com.github.mfamador"
 version = "1.0-SNAPSHOT"
 

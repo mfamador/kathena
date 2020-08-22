@@ -1,4 +1,4 @@
-package com.meltwater.fairhair.document.controller
+package com.github.mfamador.kathena.controller
 
 import com.github.mfamador.kathena.exception.PersonNotFoundException
 import com.github.mfamador.kathena.model.ApiError

@@ -10,15 +10,12 @@ import org.springframework.data.elasticsearch.client.RestClients
 
 @Configuration
 class ElasticsearchConfig(@Value("\${elasticsearch.host}") private val host: String) {
-    val log = LoggerFactory.getLogger(javaClass)
 
     @Bean
     fun client(): RestHighLevelClient {
-
         val clientConfiguration = ClientConfiguration.builder()
-            .connectedTo(host)
-            .build()
-
+                .connectedTo(host)
+                .build()
         return RestClients.create(clientConfiguration).rest()
     }
 }

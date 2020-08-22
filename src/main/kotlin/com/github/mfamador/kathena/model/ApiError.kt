@@ -8,7 +8,4 @@ import com.fasterxml.jackson.annotation.JsonProperty
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 data class ApiError @JsonCreator constructor(@JsonInclude(JsonInclude.Include.NON_NULL)
                                              @JsonProperty("personId") val personId: String?,
-                                             @JsonProperty("message") val message: String) {
-
-    constructor(message: String) : this(null, message)
-}
+                                             @JsonProperty("message") val message: String)

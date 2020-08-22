@@ -4,4 +4,4 @@ import org.springframework.data.annotation.Id
 import org.springframework.data.elasticsearch.annotations.Document
 
 @Document(indexName = "blog", type = "article")
-data class Article(@Id var id: String?, var title :String?)
+data class Article(@Id var id: String?, var title: String?)
