@@ -1,9 +1,9 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    val kotlinVersion = "1.3.72"
-    val dependencyManagementVersion = "1.0.9.RELEASE"
-    val springBootVersion = "2.3.2.RELEASE"
+    val kotlinVersion = "1.4.10"
+    val dependencyManagementVersion = "1.0.10.RELEASE"
+    val springBootVersion = "2.3.4.RELEASE"
 
     id("org.springframework.boot") version springBootVersion
     id("io.spring.dependency-management") version dependencyManagementVersion
@@ -27,10 +27,10 @@ repositories {
 apply(plugin = "org.jetbrains.kotlin.plugin.allopen")
 apply(plugin = "io.spring.dependency-management")
 
-val springVersion = "5.2.8.RELEASE"
-val junitVersion = "5.6.2"
-val assertJVersion = "3.16.1"
-val kotlinVersion = "1.3.72"
+val springVersion = "5.2.9.RELEASE"
+val junitVersion = "5.7.0"
+val assertJVersion = "3.17.2"
+val kotlinVersion = "1.4.10"
 val jacksonVersion = "2.11.2"
 
 dependencies {
