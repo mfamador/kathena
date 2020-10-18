@@ -31,7 +31,7 @@ val springVersion = "5.2.9.RELEASE"
 val junitVersion = "5.7.0"
 val assertJVersion = "3.17.2"
 val kotlinVersion = "1.4.10"
-val jacksonVersion = "2.11.2"
+val jacksonVersion = "2.11.3"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
