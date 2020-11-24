@@ -30,7 +30,7 @@ apply(plugin = "io.spring.dependency-management")
 val springVersion = "5.2.9.RELEASE"
 val junitVersion = "5.7.0"
 val assertJVersion = "3.17.2"
-val kotlinVersion = "1.4.10"
+val kotlinVersion = "1.4.20"
 val jacksonVersion = "2.11.3"
 
 dependencies {
