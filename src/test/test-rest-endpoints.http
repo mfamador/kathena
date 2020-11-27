@@ -24,7 +24,7 @@ client.test("Response content-type is json", function() {
 POST http://localhost:8080/v1/person
 Content-Type: application/json
 
-{"name": "Marco"}
+{"name": "Marco Amador"}
 
 ###
 
@@ -43,7 +43,7 @@ GET http://localhost:9200/_cat/indices/blog
 
 ###
 
-POST localhost:9200/blog/article/1
+POST localhost:9200/blog/article/
 Content-Type: application/json
 
 {
@@ -51,6 +51,10 @@ Content-Type: application/json
     "lastname" : "Doe",
     "job_description" : "Systems administrator and Linux specialist"
 }
+
+###
+
+GET localhost:9200/blog/article/1
 
 ###
 
