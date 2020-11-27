@@ -65,3 +65,11 @@ GET http://localhost:9200/blog/_doc/1
 GET http://localhost:9200/blog/_search
 
 ###
+
+GET http://localhost:9200/_cluster/health
+
+###
+
+GET http://localhost:9200/
+
+###
