@@ -41,7 +41,7 @@ services:
     command: mongod --logpath=/dev/null # --quiet
 
   zookeeper:
-    image: zookeeper:3.6.2
+    image: zookeeper:3.4.14
     hostname: zookeeper
     ports:
       - "2181:2181"
