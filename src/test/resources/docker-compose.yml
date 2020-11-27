@@ -41,7 +41,7 @@ services:
     command: mongod --logpath=/dev/null # --quiet
 
   zookeeper:
-    image: zookeeper:3.4.14
+    image: zookeeper:3.6.2
     hostname: zookeeper
     ports:
       - "2181:2181"
@@ -54,7 +54,7 @@ services:
       - ./data/zoo/datalog:/datalog
 
   kafka:
-    image: confluentinc/cp-kafka:5.5.1
+    image: confluentinc/cp-kafka:5.5.2
     hostname: kafka
     ports:
       - "9092:9092"
