@@ -7,7 +7,7 @@ import org.springframework.boot.runApplication
 @SpringBootApplication
 class KathenaApp
 private val log = LoggerFactory.getLogger(KathenaApp::class.java)
-fun main(args: Array<String>) {
+fun main() {
     log.info("Starting Kathena")
-    runApplication<KathenaApp>(*args)
+    runApplication<KathenaApp>()
 }
