@@ -1,9 +1,9 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    val kotlinVersion = "1.4.10"
+    val kotlinVersion = "1.4.20"
     val dependencyManagementVersion = "1.0.10.RELEASE"
-    val springBootVersion = "2.3.4.RELEASE"
+    val springBootVersion = "2.4.0"
 
     id("org.springframework.boot") version springBootVersion
     id("io.spring.dependency-management") version dependencyManagementVersion
@@ -27,11 +27,11 @@ repositories {
 apply(plugin = "org.jetbrains.kotlin.plugin.allopen")
 apply(plugin = "io.spring.dependency-management")
 
-val springVersion = "5.2.9.RELEASE"
+val springVersion = "5.3.1"
 val junitVersion = "5.7.0"
-val assertJVersion = "3.17.2"
+val assertJVersion = "3.18.1"
 val kotlinVersion = "1.4.20"
-val jacksonVersion = "2.11.3"
+val jacksonVersion = "2.12.0"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
