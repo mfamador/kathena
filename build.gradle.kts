@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    val kotlinVersion = "1.4.20"
+    val kotlinVersion = "1.4.30"
     val dependencyManagementVersion = "1.0.10.RELEASE"
     val springBootVersion = "2.4.0"
 
@@ -30,7 +30,8 @@ apply(plugin = "io.spring.dependency-management")
 val springVersion = "5.3.1"
 val junitVersion = "5.7.0"
 val assertJVersion = "3.18.1"
-val kotlinVersion = "1.4.20"
+val kotlinVersion = "1.4.30"
+val kotlinxVersion = "1.4.2"
 val jacksonVersion = "2.12.0"
 
 dependencies {
@@ -41,8 +42,8 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinxVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:$kotlinxVersion")
     implementation("org.springframework.kafka:spring-kafka")
 
     testImplementation("com.palantir.docker.compose:docker-compose-junit-jupiter:1.4.2")
