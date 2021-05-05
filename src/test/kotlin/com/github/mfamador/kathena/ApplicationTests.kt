@@ -35,10 +35,8 @@ class ApplicationTests {
         val dockerRule = DockerComposeExtension.builder()
             .file("src/test/resources/docker-compose.yml")
             .waitingForService("kafka", HealthChecks.toHaveAllPortsOpen())
-            .waitingForService(
-                "elasticsearch", HealthChecks.toRespondOverHttp(
-                    9200
-                ) { port: DockerPort -> port.inFormat("http://\$HOST:\$EXTERNAL_PORT") }
+            .waitingForService("elasticsearch",
+                HealthChecks.toRespondOverHttp(9200) { port: DockerPort -> port.inFormat("http://\$HOST:\$EXTERNAL_PORT") }
             )
             //.shutdownStrategy(SKIP) // DO NOT USE ON CI
             .shutdownStrategy(GRACEFUL)
