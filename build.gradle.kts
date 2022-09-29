@@ -1,9 +1,9 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    val kotlinVersion = "1.5.30"
+    val kotlinVersion = "1.7.20"
     val dependencyManagementVersion = "1.0.11.RELEASE"
-    val springBootVersion = "2.5.1"
+    val springBootVersion = "2.7.0"
 
     id("org.springframework.boot") version springBootVersion
     id("io.spring.dependency-management") version dependencyManagementVersion
@@ -27,12 +27,13 @@ repositories {
 apply(plugin = "org.jetbrains.kotlin.plugin.allopen")
 apply(plugin = "io.spring.dependency-management")
 
-val springVersion = "5.3.8"
-val junitVersion = "5.7.2"
-val assertJVersion = "3.20.2"
-val kotlinVersion = "1.5.30"
-val kotlinxVersion = "1.5.0"
-val jacksonVersion = "2.12.3"
+val springVersion = "5.3.21"
+val junitVersion = "5.8.2"
+val assertJVersion = "3.23.1"
+val kotlinVersion = "1.7.20"
+val kotlinxVersion = "1.6.2"
+val jacksonVersion = "2.13.3"
+val jupiterVersion = "1.8.0"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
@@ -46,7 +47,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:$kotlinxVersion")
     implementation("org.springframework.kafka:spring-kafka")
 
-    testImplementation("com.palantir.docker.compose:docker-compose-junit-jupiter:1.4.2")
+    testImplementation("com.palantir.docker.compose:docker-compose-junit-jupiter:$jupiterVersion")
     testImplementation("org.assertj:assertj-core:$assertJVersion")
     testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
@@ -63,6 +64,6 @@ tasks.withType<Test> {
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 }
