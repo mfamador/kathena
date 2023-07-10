@@ -27,7 +27,7 @@ class PersonHandler(private val personService: PersonService) {
             .switchIfEmpty(ServerResponse.notFound().build())
 
     fun add(request: ServerRequest): Mono<ServerResponse> =
-        ServerResponse.created(UriComponentsBuilder.fromPath("person/").build().toUri())
+        ServerResponse.created(UriComponentsBuilder.fromPath("").build().toUri())
             .contentType(MediaType.APPLICATION_JSON)
             .body(
                 BodyInserters.fromPublisher(

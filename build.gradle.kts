@@ -1,9 +1,9 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    val kotlinVersion = "1.7.20"
-    val dependencyManagementVersion = "1.0.11.RELEASE"
-    val springBootVersion = "2.7.0"
+    val kotlinVersion = "1.8.21"
+    val dependencyManagementVersion = "1.1.0"
+    val springBootVersion = "3.1.1"
 
     id("org.springframework.boot") version springBootVersion
     id("io.spring.dependency-management") version dependencyManagementVersion
@@ -27,13 +27,13 @@ repositories {
 apply(plugin = "org.jetbrains.kotlin.plugin.allopen")
 apply(plugin = "io.spring.dependency-management")
 
-val springVersion = "5.3.21"
-val junitVersion = "5.8.2"
-val assertJVersion = "3.23.1"
-val kotlinVersion = "1.7.20"
-val kotlinxVersion = "1.6.2"
-val jacksonVersion = "2.13.3"
-val jupiterVersion = "1.8.0"
+val springVersion = "6.0.10"
+val junitVersion = "5.9.3"
+val assertJVersion = "3.24.2"
+val kotlinVersion = "1.8.21"
+val kotlinxVersion = "1.7.2"
+val jacksonVersion = "2.15.2"
+val jupiterVersion = "2.0.0"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
@@ -64,6 +64,6 @@ tasks.withType<Test> {
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
 }

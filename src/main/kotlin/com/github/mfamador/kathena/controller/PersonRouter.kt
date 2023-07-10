@@ -15,16 +15,16 @@ class PersonRouter(private val handler: PersonHandler) {
                 GET("", handler::getAll)
                 GET("/{id}", handler::get)
                 GET("/count", handler::count)
-                POST("/", handler::add)
+                POST("", handler::add)
                 PUT("/{id}", handler::update)
                 GET("/{id}", handler::get)
                 DELETE("/{id}", handler::delete)
-                DELETE("/", handler::deleteAll) // TODO - remove this route
+                DELETE("", handler::deleteAll) // TODO - remove this route
             }
         }
     }
 
     companion object {
-        const val PERSON_ENDPOINT = "/v1/person"
+        const val PERSON_ENDPOINT = "/person"
     }
 }

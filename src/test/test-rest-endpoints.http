@@ -5,7 +5,7 @@
 # * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
 # * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
 
-GET http://localhost:8080/v1/person
+GET http://localhost:8080/person
 Accept: application/json
 
 > {%
@@ -21,10 +21,10 @@ client.test("Response content-type is json", function() {
 
 ###
 
-POST http://localhost:8080/v1/person
+POST http://localhost:8080/person
 Content-Type: application/json
 
-{"name": "Marco Amador"}
+{"name": "Marco Amador 3"}
 
 ###
 
