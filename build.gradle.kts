@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    val kotlinVersion = "1.8.21"
+    val kotlinVersion = "1.9.0"
     val dependencyManagementVersion = "1.1.0"
     val springBootVersion = "3.1.1"
 
@@ -30,7 +30,7 @@ apply(plugin = "io.spring.dependency-management")
 val springVersion = "6.0.10"
 val junitVersion = "5.9.3"
 val assertJVersion = "3.24.2"
-val kotlinVersion = "1.8.21"
+val kotlinVersion = "1.9.0"
 val kotlinxVersion = "1.7.2"
 val jacksonVersion = "2.15.2"
 val jupiterVersion = "2.0.0"
@@ -64,6 +64,6 @@ tasks.withType<Test> {
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "17"
+        jvmTarget = "19"
     }
 }
