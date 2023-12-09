@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    val kotlinVersion = "1.9.0"
+    val kotlinVersion = "1.9.21"
     val dependencyManagementVersion = "1.1.0"
     val springBootVersion = "3.1.1"
 
