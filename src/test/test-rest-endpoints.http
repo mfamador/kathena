@@ -43,7 +43,7 @@ GET http://localhost:9200/_cat/indices/blog
 
 ###
 
-POST localhost:9200/blog/article/
+POST localhost:9200/blog/_doc/
 Content-Type: application/json
 
 {
@@ -54,11 +54,11 @@ Content-Type: application/json
 
 ###
 
-GET localhost:9200/blog/article/1
+GET localhost:9200/blog/
 
 ###
 
-GET http://localhost:9200/blog/_doc/1
+GET http://localhost:9200/blog/_doc/TRRY75ABFZ3j7Xp5wyOL
 
 ###
 
