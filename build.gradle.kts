@@ -1,9 +1,9 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    val kotlinVersion = "2.0.0"
+    val kotlinVersion = "2.1.10"
     val dependencyManagementVersion = "1.1.6"
-    val springBootVersion = "3.3.2"
+    val springBootVersion = "3.4.2"
 
     id("org.springframework.boot") version springBootVersion
     id("io.spring.dependency-management") version dependencyManagementVersion
@@ -27,8 +27,7 @@ repositories {
 apply(plugin = "org.jetbrains.kotlin.plugin.allopen")
 apply(plugin = "io.spring.dependency-management")
 
-val springVersion = "6.0.10"
-val springBootVersion = "3.3.2"
+val springVersion = "6.1.2"
 val junitVersion = "5.10.3"
 val assertJVersion = "3.26.3"
 val kotlinVersion = "2.0.0"
@@ -65,6 +64,6 @@ tasks.withType<Test> {
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "19"
+        jvmTarget = "23"
     }
 }
