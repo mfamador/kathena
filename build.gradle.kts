@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     val kotlinVersion = "2.1.10"
-    val dependencyManagementVersion = "1.1.6"
+    val dependencyManagementVersion = "1.1.7"
     val springBootVersion = "3.4.2"
 
     id("org.springframework.boot") version springBootVersion
@@ -13,6 +13,7 @@ plugins {
 
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.spring") version kotlinVersion
+    id("com.github.ben-manes.versions") version "0.53.0"
 }
 group = "com.github.mfamador"
 version = "1.0-SNAPSHOT"
@@ -27,12 +28,12 @@ repositories {
 apply(plugin = "org.jetbrains.kotlin.plugin.allopen")
 apply(plugin = "io.spring.dependency-management")
 
-val springVersion = "6.1.2"
-val junitVersion = "5.10.3"
-val assertJVersion = "3.26.3"
-val kotlinVersion = "2.0.0"
-val kotlinxVersion = "1.8.1"
-val jacksonVersion = "2.17.1"
+val springVersion = "6.2.2"
+val junitVersion = "5.11.4"
+val assertJVersion = "3.27.3"
+val kotlinVersion = "2.1.10"
+val kotlinxVersion = "1.10.1"
+val jacksonVersion = "2.18.2"
 val jupiterVersion = "2.3.0"
 
 dependencies {
@@ -46,6 +47,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinxVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:$kotlinxVersion")
     implementation("org.springframework.kafka:spring-kafka")
+    implementation("org.springdoc:springdoc-openapi-starter-webflux-ui:2.8.6")
 
     testImplementation("com.palantir.docker.compose:docker-compose-junit-jupiter:$jupiterVersion")
     testImplementation("org.assertj:assertj-core:$assertJVersion")
@@ -62,8 +64,13 @@ tasks.withType<Test> {
 }
 
 tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "23"
+    compilerOptions {
+        freeCompilerArgs.add("-Xjsr305=strict")
+    }
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(21))
     }
 }
