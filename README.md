@@ -369,6 +369,42 @@ curl -X DELETE http://localhost:8080/api/data/clear
 
 ## Testing
 
+### Comprehensive Test Suite
+
+This project includes extensive test coverage:
+- ✅ **Model Unit Tests** - Data class validation
+- ✅ **Repository Integration Tests** - MongoDB & Elasticsearch
+- ✅ **Controller Integration Tests** - All REST endpoints
+- ✅ **Kafka Integration Tests** - Message streaming
+- ✅ **Error Handling Tests** - Edge cases and error scenarios
+- ✅ **Actuator Tests** - Health checks and metrics
+
+📖 **See [docs/TESTING.md](docs/TESTING.md) for detailed test documentation**
+
+### Run All Tests
+
+Requires Docker running:
+
+```bash
+./gradlew test
+```
+
+### Run Specific Test Categories
+
+```bash
+# Unit tests only (fast, no Docker)
+./gradlew test --tests "*.model.*"
+
+# Repository tests
+./gradlew test --tests "*.repository.*"
+
+# Controller/API tests
+./gradlew test --tests "*.controller.*"
+
+# Kafka tests
+./gradlew test --tests "*.kafka.*"
+```
+
 ### Automated API Testing
 
 Run the comprehensive API test script:
@@ -387,11 +423,6 @@ Use the provided HTTP file for IntelliJ IDEA:
 src/test/test-rest-endpoints.http
 ```
 
-### Run Unit Tests
-
-```bash
-./gradlew test
-```
 
 ## Configuration
 
@@ -706,6 +737,21 @@ This project demonstrates:
 - **Elasticsearch**: Full-text search capabilities with query methods
 - **Kafka Integration**: Event-driven messaging with producers and consumers
 - **Kotlin Features**: Data classes, extension functions, coroutines integration
+
+## Architecture Decision Records
+
+Key architectural decisions are documented in [docs/adr/](docs/adr/README.md):
+
+- [ADR-0001: Use Spring WebFlux for Reactive Programming](docs/adr/0001-use-spring-webflux-for-reactive-programming.md)
+- [ADR-0002: Use MongoDB for Document Storage](docs/adr/0002-use-mongodb-for-document-storage.md)
+- [ADR-0003: Use Elasticsearch for Full-Text Search](docs/adr/0003-use-elasticsearch-for-full-text-search.md)
+- [ADR-0004: Use Apache Kafka for Event Streaming](docs/adr/0004-use-kafka-for-event-streaming.md)
+- [ADR-0005: Use Kotlin as Primary Language](docs/adr/0005-use-kotlin-as-primary-language.md)
+- [ADR-0006: Use Functional Router Pattern for HTTP Endpoints](docs/adr/0006-use-functional-router-pattern-for-http-endpoints.md)
+- [ADR-0007: Use Docker Compose for Integration Tests](docs/adr/0007-use-docker-compose-for-integration-tests.md)
+- [ADR-0008: Implement Custom Migration System](docs/adr/0008-implement-custom-migration-system.md)
+- [ADR-0009: Use Redpanda Instead of Apache Kafka in Development](docs/adr/0009-use-redpanda-instead-of-kafka-in-development.md)
+- [ADR-0010: Use ktlint and detekt for Code Quality](docs/adr/0010-use-ktlint-and-detekt-for-code-quality.md)
 
 ## Cleanup
 

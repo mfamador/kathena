@@ -1,0 +1,22 @@
+repos:
+  - repo: local
+    hooks:
+      - id: ktlint-format
+        name: ktlint format
+        entry: ./gradlew ktlintFormat
+        language: system
+        types_or: [kotlin]
+        pass_filenames: false
+      - id: ktlint-check
+        name: ktlint check
+        entry: ./gradlew ktlintCheck
+        language: system
+        types_or: [kotlin]
+        pass_filenames: false
+      - id: detekt
+        name: detekt
+        entry: ./gradlew detekt
+        language: system
+        types_or: [kotlin]
+        pass_filenames: false
+

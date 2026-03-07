@@ -1,7 +1,6 @@
 services:
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.14.3
-    container_name: elasticsearch
     environment:
       - xpack.security.enabled=false
       - discovery.type=single-node
@@ -17,16 +16,21 @@ services:
     volumes:
       - ./data:/usr/share/elasticsearch/data
     ports:
-      - "9200:9200"
-      - "9300:9300"
+      - "9201:9200"
+      - "9301:9300"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:9200/_cluster/health?wait_for_status=yellow&timeout=10s >/dev/null || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 60
+      start_period: 20s
 
   kibana:
-    container_name: kibana
     image: docker.elastic.co/kibana/kibana:8.14.3
     environment:
      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
     ports:
-     - "5601:5601"
+     - "5602:5601"
     depends_on:
      - elasticsearch
 
@@ -35,15 +39,20 @@ services:
     volumes:
       - ./data/db:/data/db
     ports:
-      - "27017:27017"
+      - "27018:27017"
     command: mongod --logpath=/dev/null # --quiet
+    healthcheck:
+      test: ["CMD-SHELL", "mongosh --quiet --eval 'db.runCommand({ ping: 1 })' >/dev/null || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 60
+      start_period: 20s
 
   kafka:
     image: redpandadata/redpanda:latest
-    container_name: kafka
     ports:
-      - "9092:9092"
-      - "9644:9644"
+      - "19092:9092"
+      - "19644:9644"
     command:
       - redpanda
       - start
@@ -58,4 +67,10 @@ services:
       - --kafka-addr
       - PLAINTEXT://0.0.0.0:9092
       - --advertise-kafka-addr
-      - PLAINTEXT://localhost:9092
+      - PLAINTEXT://localhost:19092
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:9644/v1/status/ready >/dev/null || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 60
+      start_period: 20s
