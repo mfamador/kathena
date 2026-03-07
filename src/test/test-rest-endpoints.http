@@ -1,75 +1,208 @@
-# For a quick start check out our HTTP Requests collection (Tools|HTTP Client|Open HTTP Requests Collection).
-#
-# Following HTTP Request Live Templates are available:
-# * 'gtrp' and 'gtr' create a GET request with or without query parameters;
-# * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
-# * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
+# Kathena API Tests
+# Test all REST endpoints for the Kathena application
 
+###############################################################################
+# DATA MANAGEMENT
+###############################################################################
+
+### Load sample data into all stores
+POST http://localhost:8080/api/data/load
+Content-Type: application/json
+
+### Get data statistics
+GET http://localhost:8080/api/data/stats
+Accept: application/json
+
+### Clear all data
+DELETE http://localhost:8080/api/data/clear
+
+###############################################################################
+# PERSON ENDPOINTS (MongoDB - Reactive)
+###############################################################################
+
+### Get all persons
 GET http://localhost:8080/person
 Accept: application/json
 
-> {%
-client.test("Request executed successfully", function() {
-  client.assert(response.status === 200, "Response status is not 200");
-});
+### Count persons
+GET http://localhost:8080/person/count
+Accept: application/json
 
-client.test("Response content-type is json", function() {
-  let type = response.contentType.mimeType;
-  client.assert(type === "application/json", "Expected 'application/json' but received '" + type + "'");
-});
-%}
-
-###
-
+### Create a new person
 POST http://localhost:8080/person
 Content-Type: application/json
 
-{"name": "Marco Amador 3"}
+{
+  "name": "Marco Amador",
+  "email": "marco@example.com",
+  "age": 35,
+  "city": "Lisbon"
+}
 
-###
+### Get person by ID (replace with actual ID)
+GET http://localhost:8080/person/65f1234567890abcdef12345
+Accept: application/json
 
-POST http://localhost:8080/api/message
-Content-Type: text/plain
-
-"test message 12345"
-
-###
-
-GET http://localhost:9200/_cat/indices/
-
-###
-
-GET http://localhost:9200/_cat/indices/blog
-
-###
-
-POST localhost:9200/blog/_doc/
+### Update person (replace with actual ID)
+PUT http://localhost:8080/person/65f1234567890abcdef12345
 Content-Type: application/json
 
 {
-    "name" : "John",
-    "lastname" : "Doe",
-    "job_description" : "Systems administrator and Linux specialist"
+  "name": "Marco Amador Updated",
+  "email": "marco.updated@example.com",
+  "age": 36,
+  "city": "Porto"
 }
 
-###
+### Delete person by ID (replace with actual ID)
+DELETE http://localhost:8080/person/65f1234567890abcdef12345
 
-GET localhost:9200/blog/
+### Search persons by name
+GET http://localhost:8080/person/search?name=Alice
+Accept: application/json
 
-###
+### Find persons by city
+GET http://localhost:8080/person/city/New%20York
+Accept: application/json
 
-GET http://localhost:9200/blog/_doc/TRRY75ABFZ3j7Xp5wyOL
+### Find persons older than age
+GET http://localhost:8080/person/older?age=30
+Accept: application/json
 
-###
+### Create multiple persons (batch)
+POST http://localhost:8080/person/batch
+Content-Type: application/json
 
-GET http://localhost:9200/blog/_search
+[
+  {
+    "name": "Batch Person 1",
+    "email": "batch1@example.com",
+    "age": 28,
+    "city": "Madrid"
+  },
+  {
+    "name": "Batch Person 2",
+    "email": "batch2@example.com",
+    "age": 45,
+    "city": "Barcelona"
+  }
+]
 
-###
+### Delete all persons (use with caution)
+DELETE http://localhost:8080/person
 
+###############################################################################
+# ARTICLE ENDPOINTS (Elasticsearch)
+###############################################################################
+
+### Get all articles
+GET http://localhost:8080/article
+Accept: application/json
+
+### Count articles
+GET http://localhost:8080/article/count
+Accept: application/json
+
+### Create a new article
+POST http://localhost:8080/article
+Content-Type: application/json
+
+{
+  "title": "My First Article",
+  "content": "This is the content of my first article about reactive programming.",
+  "author": "Marco Amador",
+  "tags": ["reactive", "kotlin", "spring"]
+}
+
+### Get article by ID (replace with actual ID)
+GET http://localhost:8080/article/abc123def456
+Accept: application/json
+
+### Update article (replace with actual ID)
+PUT http://localhost:8080/article/abc123def456
+Content-Type: application/json
+
+{
+  "title": "Updated Article Title",
+  "content": "Updated content with more information.",
+  "author": "Marco Amador",
+  "tags": ["reactive", "kotlin", "spring", "webflux"]
+}
+
+### Delete article by ID (replace with actual ID)
+DELETE http://localhost:8080/article/abc123def456
+
+### Search articles by title
+GET http://localhost:8080/article/search?title=Kotlin
+Accept: application/json
+
+### Find articles by author
+GET http://localhost:8080/article/author/Alice%20Johnson
+Accept: application/json
+
+### Find articles by tag
+GET http://localhost:8080/article/tag/kotlin
+Accept: application/json
+
+### Create multiple articles (batch)
+POST http://localhost:8080/article/batch
+Content-Type: application/json
+
+[
+  {
+    "title": "Batch Article 1",
+    "content": "Content for batch article 1",
+    "author": "Batch Author",
+    "tags": ["batch", "test", "demo"]
+  },
+  {
+    "title": "Batch Article 2",
+    "content": "Content for batch article 2",
+    "author": "Batch Author",
+    "tags": ["batch", "tutorial"]
+  }
+]
+
+### Delete all articles (use with caution)
+DELETE http://localhost:8080/article
+
+###############################################################################
+# MESSAGING ENDPOINTS (Kafka/Redpanda)
+###############################################################################
+
+### Send a message to Kafka
+POST http://localhost:8080/api/message
+Content-Type: text/plain
+
+Test message from HTTP client
+
+### Send another message
+POST http://localhost:8080/api/message
+Content-Type: text/plain
+
+User action: Article viewed - ID: 12345
+
+###############################################################################
+# ELASTICSEARCH ADMIN (Direct Access)
+###############################################################################
+
+### Check Elasticsearch health
 GET http://localhost:9200/_cluster/health
 
-###
+### List all indices
+GET http://localhost:9200/_cat/indices/
 
-GET http://localhost:9200/
+### Get blog index info
+GET http://localhost:9200/blog/
 
-###
+### Search blog index
+GET http://localhost:9200/blog/_search
+
+###############################################################################
+# HEALTH CHECK
+###############################################################################
+
+### Application health
+GET http://localhost:8080/actuator/health
+Accept: application/json
+

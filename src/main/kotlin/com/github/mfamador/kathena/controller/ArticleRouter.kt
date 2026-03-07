@@ -5,14 +5,14 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.http.MediaType
 import org.springframework.web.reactive.function.server.router
 
-// Disabled - replaced by PersonController for better Swagger documentation
+// Disabled - replaced by ArticleController for better Swagger documentation
 // @Configuration
-class PersonRouter(private val handler: PersonHandler) {
+class ArticleRouter(private val handler: ArticleHandler) {
 
     @Bean
-    fun personRoute() = router {
+    fun articleRoute() = router {
         accept(MediaType.APPLICATION_JSON).nest {
-            PERSON_ENDPOINT.nest {
+            ARTICLE_ENDPOINT.nest {
                 GET("", handler::getAll)
                 GET("/{id}", handler::get)
                 GET("/count", handler::count)
@@ -21,14 +21,15 @@ class PersonRouter(private val handler: PersonHandler) {
                 PUT("/{id}", handler::update)
                 DELETE("/{id}", handler::delete)
                 DELETE("", handler::deleteAll)
-                GET("/search", handler::searchByName)
-                GET("/city/{city}", handler::findByCity)
-                GET("/older", handler::findByAgeGreaterThan)
+                GET("/search", handler::searchByTitle)
+                GET("/author/{author}", handler::findByAuthor)
+                GET("/tag/{tag}", handler::findByTag)
             }
         }
     }
 
     companion object {
-        const val PERSON_ENDPOINT = "/person"
+        const val ARTICLE_ENDPOINT = "/article"
     }
 }
+

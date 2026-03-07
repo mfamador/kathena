@@ -36,6 +36,18 @@ class PersonHandler(private val personService: PersonService) {
                 )
             )
 
+    fun addBatch(request: ServerRequest): Mono<ServerResponse> =
+        ServerResponse.ok()
+            .contentType(MediaType.APPLICATION_JSON)
+            .body(
+                BodyInserters.fromPublisher(
+                    request.bodyToFlux(Person::class.java)
+                        .collectList()
+                        .flatMapMany { personService.saveAll(it) },
+                    Person::class.java
+                )
+            )
+
     fun update(request: ServerRequest): Mono<ServerResponse> =
         personService.get(getId(request))
             .flatMap {
@@ -56,6 +68,25 @@ class PersonHandler(private val personService: PersonService) {
 
     fun deleteAll(request: ServerRequest): Mono<ServerResponse> =
         ServerResponse.noContent().build(personService.deleteAll())
+
+    // Search handlers
+    fun searchByName(request: ServerRequest): Mono<ServerResponse> {
+        val name = request.queryParam("name").orElse("")
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+            .body(BodyInserters.fromPublisher(personService.searchByName(name), Person::class.java))
+    }
+
+    fun findByCity(request: ServerRequest): Mono<ServerResponse> {
+        val city = request.pathVariable("city")
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+            .body(BodyInserters.fromPublisher(personService.findByCity(city), Person::class.java))
+    }
+
+    fun findByAgeGreaterThan(request: ServerRequest): Mono<ServerResponse> {
+        val age = request.queryParam("age").map { it.toIntOrNull() ?: 0 }.orElse(0)
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+            .body(BodyInserters.fromPublisher(personService.findByAgeGreaterThan(age), Person::class.java))
+    }
 
     private fun getId(request: ServerRequest) = request.pathVariable("id")
 }
