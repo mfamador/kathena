@@ -372,14 +372,25 @@ curl -X DELETE http://localhost:8080/api/data/clear
 ### Comprehensive Test Suite
 
 This project includes extensive test coverage:
-- ✅ **Model Unit Tests** - Data class validation
+- ✅ **Model Unit Tests** - Data class validation (no Docker needed)
 - ✅ **Repository Integration Tests** - MongoDB & Elasticsearch
 - ✅ **Controller Integration Tests** - All REST endpoints
 - ✅ **Kafka Integration Tests** - Message streaming
 - ✅ **Error Handling Tests** - Edge cases and error scenarios
 - ✅ **Actuator Tests** - Health checks and metrics
 
-📖 **See [docs/TESTING.md](docs/TESTING.md) for detailed test documentation**
+### Quick Test Commands
+
+**New! Use the test runner script:**
+
+```bash
+./scripts/run-tests.sh help        # Show all options
+./scripts/run-tests.sh unit        # Fast unit tests (no Docker)
+./scripts/run-tests.sh repository  # MongoDB & Elasticsearch tests
+./scripts/run-tests.sh controller  # API integration tests
+./scripts/run-tests.sh kafka       # Kafka integration tests
+./scripts/run-tests.sh all         # Full test suite
+```
 
 ### Run All Tests
 
@@ -392,16 +403,16 @@ Requires Docker running:
 ### Run Specific Test Categories
 
 ```bash
-# Unit tests only (fast, no Docker)
+# Unit tests only (fast, no Docker needed)
 ./gradlew test --tests "*.model.*"
 
-# Repository tests
+# Repository tests (needs MongoDB & Elasticsearch)
 ./gradlew test --tests "*.repository.*"
 
-# Controller/API tests
+# Controller/API tests (needs all containers)
 ./gradlew test --tests "*.controller.*"
 
-# Kafka tests
+# Kafka tests (needs Redpanda/Kafka)
 ./gradlew test --tests "*.kafka.*"
 ```
 
